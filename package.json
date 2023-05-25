@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@dcloudio/uni-ui": "^1.4.27",
+    "mand-mobile": "^2.6.1",
+    "uni-ui": "^1.0.0"
+  }
+}

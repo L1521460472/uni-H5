@@ -3,7 +3,7 @@ import Request from '@/js_sdk/luch-request/request.js'
 const http = new Request()
 
 http.setConfig((config) => { /* 设置全局配置 */
-	config.baseUrl = 'https://code.ipcipc.cn' /* 根域名不同 */
+	config.baseUrl = 'http://cnwmm.org' /* 根域名不同 */
 	config.header = {
 		...config.header
 	}
@@ -42,9 +42,11 @@ http.interceptor.request((config, cancel) => { /* 请求之前拦截器 */
 http.interceptor.response((response) => { /* 请求之后拦截器 */
 	const res = response.data;
 	if (res.code !== 200) {
+		console.log(res)
 		//提示错误信息
 		uni.showToast({
-			title:res.message,
+			icon: 'error',
+			title:res.msg,
 			duration:1500
 		})
 		//401未登录处理

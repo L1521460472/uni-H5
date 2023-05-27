@@ -3,17 +3,17 @@
 		<view class="header">
 		    <view v-if='count == 1' class="header-box">
 		      <view class="header-box-top">
-		        <text class="box3"><text style="margin-right:2px">84006</text><text style="margin-right:2px">30002</text><text style="margin-right:2px">64123</text> <text style="margin-right:0px">84088</text></text>
+		        <view class="box3"><view style="margin-right:2px">{{code1}}</view><view style="margin-right:2px">{{code2}}</view><view style="margin-right:2px">{{code3}}</view> <view style="margin-right:0px">{{code4}}</view></view>
 		      </view>
 		      <view class="header-box-bot">
 		        <text style="font-size:21px;color:#69ccad;margin-top: 16px;font-family: '苹方-简';">药品追溯码验证通过</text>
 		        <text style="color:#948e97;margin-top: 6px;">总扫码人数<text style="color:#ebb62f;"> 1 </text>人，且在有效期内</text>
-		        <button style="border-radius: 20px;margin-top: 12px;" type="primary" size="mini" @click="toDetail">验证详情 > </button>
+		        <button style="border-radius: 20px;margin-top: 12px;margin-left: 0;padding: 0 8px;" type="primary" size="mini" @click="toDetail">验证详情 > </button>
 		      </view>
 		    </view>
 		    <view v-else class="header-boxs">
 		      <view class="header-box-top">
-		        <text class="box3"><text style="margin-right:1px">84006</text><text style="margin-right:1px">30002</text><text style="margin-right:1px">64123</text> <text style="margin-right:0px">84088</text></text>
+		        <view class="box3"><view style="margin-right:2px">{{code1}}</view><view style="margin-right:2px">{{code2}}</view><view style="margin-right:2px">{{code3}}</view> <view style="margin-right:0px">{{code4}}</view></view>
 		      </view>
 		      <view class="header-box-bot">
 		        <text style="font-size:20px;color:#ebb62f;margin-top: 16px;font-family: '苹方-简';">药品被多人验证</text>
@@ -67,6 +67,7 @@
 		getData,
 	} from '@/api/index.js';
 	import {Toast, Button, ActivityIndicator} from 'mand-mobile'
+	import qrcode from '@/utils/qrcode.js'
 	export default {
 		components: {
 		    [Toast.component.name]: Toast.component,
@@ -78,7 +79,12 @@
 			return {
 				titleBarHeight: 0,
 				statusBarHeight: 0,
-				code: '81006105551115275674',
+				codes: '81006103570796247678',
+				code1: '',
+				code2: '',
+				code3: '',
+				code4: '',
+				code5: '',
 				count: null,
 				toastShow: false,
 				isShow: false,
@@ -89,8 +95,38 @@
 				title: 'Hello'
 			}
 		},
+		// computed:{
+		// 	code1(){
+		// 		console.log(this.codes)
+		// 	    return 	this.codes.substring(0,5)
+		// 	},
+		// 	code2(){
+		// 	    return 	this.codes.substring(5,10)
+		// 	},
+		// 	code3(){
+		// 	    return 	this.codes.substring(10,15)
+		// 	},
+		// 	code4(){
+		// 	    return 	this.codes.substring(15,20)
+		// 	},
+		// },
+		watch:{
+			codes: {
+				handler(oldValue,newValue){
+					console.log(oldValue,newValue)
+					this.code1 = oldValue.substring(0,5)
+					this.code2 = oldValue.substring(5,10)
+					this.code3 = oldValue.substring(10,15)
+					this.code4 = oldValue.substring(15,20)
+					console.log(oldValue,newValue,this.code1,this.code2,this.code3,this.code4)
+				},
+			}
+		},
 		onLoad(option) {
 			console.log(option)
+			if(option.code){
+				this.codes = option.code
+			}
 			this.loadData();
 		},
 		methods: {
@@ -98,7 +134,7 @@
 			 * 加载数据
 			 */
 			async loadData() {
-				getData(this.code).then(res => {
+				getData(this.codes).then(res => {
 					this.count = res.data.scanNumber
 					this.drugInfo = JSON.parse(res.data.product)
 					this.imageUrl = 'https://code.ipcipc.cn/prod-api' + this.drugInfo.productImagesUrl
@@ -108,23 +144,40 @@
 			  toDetail(){
 			    console.log(123)
 			    uni.navigateTo({
-			      url: '/pages/detail/index?id=1'  // url详解请见【路由使用须知】
+			      url: '/pages/detail/index?id=' + this.codes  // url详解请见【路由使用须知】
 			    })
 			  },
 			  // 药品详情
 			  toDrugInfo(){
 			    console.log(123)
 			    uni.navigateTo({
-			      url: '/pages/durg/index?id=1'  // url详解请见【路由使用须知】
+			      url: '/pages/durg/index?id=' + this.codes  // url详解请见【路由使用须知】
 			    })
 			  },
 			  handleTap(e) {
-			  // this.$refs.toast.show()
-			  // this.isShow = true
-			  uni.scanCode({
+			  var that = this
+			  uni.chooseImage({
+				sizeType: ['original'],
+				count: 1,
 			  	success: function (res) {
-			  		console.log('条码类型：' + res.scanType);
-			  		console.log('条码内容：' + res.result);
+					const tempFilePaths = res.tempFilePaths[0]
+					qrcode.decode(tempFilePaths)
+					qrcode.callback = res1 =>{
+						if(res1 == 'error decoding QR Code'){
+							uni.showToast({
+								title: '识别二维码失败，请重新上传',
+								deration: 2000,
+								icon: none
+							})
+						}else{
+							that.codes = (res1.split('=')[1])
+							  getData(that.codes).then(res => {
+							  	that.count = res.data.scanNumber
+							  	that.drugInfo = JSON.parse(res.data.product)
+							  	that.imageUrl = 'https://code.ipcipc.cn/prod-api' + that.drugInfo.productImagesUrl
+							  })
+						}
+					}
 			  	}
 			  });
 			 //  uni.scanCode({

@@ -2,13 +2,13 @@
 	<view class="content">
 		<view  v-if='count == 1' class="detail-header">
 		        <view class="detail-header-box">
-		            <view class="detail-header-box1">84006  30002  64123  84088</view>
+		            <view class="detail-header-box1">{{code1}}  {{code2}}  {{code3}}  {{code4}}</view>
 		            <view class="detail-header-box2">追溯码验证通过</view>
 		        </view>
 		    </view>
 		    <view v-else class="detail-headers">
 		        <view class="detail-header-box">
-		            <view class="detail-header-box1">84006  30002  64123  84088</view>
+		            <view class="detail-header-box1">{{code1}}  {{code2}}  {{code3}}  {{code4}}</view>
 		            <view class="detail-header-box2">药品被多人验证</view>
 		        </view>
 		    </view>
@@ -100,7 +100,12 @@
 			return {
 				titleBarHeight: 0,
 				statusBarHeight: 0,
-				code: '81006105551115275674',
+				code: '',
+				code1: '',
+				code2: '',
+				code3: '',
+				code4: '',
+				code5: '',
 				count: 2,
 				maxHeight1: '',
 				verifyObj: {},
@@ -149,7 +154,12 @@
 				}
 			}
 		},
-		onLoad() {
+		onLoad(option) {
+			this.code = option.id
+			this.code1 = option.id.substring(0,5)
+			this.code2 = option.id.substring(5,10)
+			this.code3 = option.id.substring(10,15)
+			this.code4 = option.id.substring(15,20)
 			this.loadData();
 			// const str = document.querySelectorAll('vertical-bar')
 			// str[0].style.maxHeight = str[0].o

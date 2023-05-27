@@ -65,7 +65,7 @@
 			return {
 				titleBarHeight: 0,
 				statusBarHeight: 0,
-				code: '81006105551115275674',
+				code: '',
 				randomLine: 0,
 				productTypeOptions: [],
 				drugList1: [],
@@ -82,7 +82,8 @@
 				title: 'Hello'
 			}
 		},
-		onLoad() {
+		onLoad(option) {
+			this.code = option.id
 			this.loadData();
 		},
 		methods: {

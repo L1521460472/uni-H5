@@ -3,5 +3,9 @@
     "@dcloudio/uni-ui": "^1.4.27",
     "mand-mobile": "^2.6.1",
     "uni-ui": "^1.0.0"
+  },
+  "devDependencies": {
+    "compression-webpack-plugin": "^6.1.1",
+    "webpack": "^4.46.0"
   }
 }

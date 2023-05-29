@@ -178,6 +178,7 @@
 			 */
 			async loadData() {
 				getVerifyData(this.code).then(res => {
+					this.count = res.data.scanCodePeopleNumber
 					this.verifyObj = res.data
 					const str1 = document.querySelectorAll('.vertical-bar')[0]
 					const str2 = document.querySelectorAll('.vertical-bar')[1]
@@ -260,7 +261,7 @@
 	  height: 190px;
 	  padding: 30px 16px;
 	  box-sizing: border-box;
-	  background: url('../../image/bj02.png') no-repeat;
+	  background: url('../../image/bj12.png') no-repeat;
 	  background-size: 100%;
 	}
 	
@@ -269,7 +270,7 @@
 	  height: 190px;
 	  padding: 30px 16px;
 	  box-sizing: border-box;
-	  background: url('../../image/bj01.png') no-repeat;
+	  background: url('../../image/bj11.png') no-repeat;
 	  background-size: 100%;
 	}
 	

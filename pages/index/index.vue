@@ -79,7 +79,7 @@
 			return {
 				titleBarHeight: 0,
 				statusBarHeight: 0,
-				codes: '81006103570796247678',
+				codes: '81006106285729560768',//81006106285729560768
 				code1: '',
 				code2: '',
 				code3: '',
@@ -113,7 +113,6 @@
 		watch:{
 			codes: {
 				handler(oldValue,newValue){
-					console.log(oldValue,newValue)
 					this.code1 = oldValue.substring(0,5)
 					this.code2 = oldValue.substring(5,10)
 					this.code3 = oldValue.substring(10,15)
@@ -137,7 +136,7 @@
 				getData(this.codes).then(res => {
 					this.count = res.data.scanNumber
 					this.drugInfo = JSON.parse(res.data.product)
-					this.imageUrl = 'https://code.ipcipc.cn/prod-api' + this.drugInfo.productImagesUrl
+					this.imageUrl = 'http://cnwmm.org/prod-api' + this.drugInfo.productImagesUrl
 				})
 			},
 			// 验证详情
@@ -262,7 +261,7 @@
 	  width: 100%;
 	  height: 100%;
 	  border-radius: 6px;
-	  background: url('../../image/banner01.png') no-repeat;
+	  background: url('../../image/banner11.png') no-repeat;
 	  background-size: 100%;
 	}
 	
@@ -270,7 +269,7 @@
 	  width: 100%;
 	  height: 100%;
 	  border-radius: 6px;
-	  background: url('../../image/banner02.png') no-repeat;
+	  background: url('../../image/banner12.png') no-repeat;
 	  background-size: 100%;
 	}
 	

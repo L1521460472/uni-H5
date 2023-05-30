@@ -1,5 +1,5 @@
 {
-    "name" : "uni-app-h5",
+    "name" : "",
     "appid" : "__UNI__D84A4E7",
     "description" : "扫码放心",
     "versionName" : "1.0.0",
@@ -70,7 +70,7 @@
     },
     "vueVersion" : "2",
     "h5" : {
-        "title" : "扫码放心",
+        "title" : "",
         "router" : {
             "base" : "./",
             "mode" : "hash"
@@ -79,6 +79,7 @@
             "treeShaking" : {
                 "enable" : true
             }
-        }
+        },
+        "template" : "count.html"
     }
 }

@@ -10,9 +10,10 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "扫码放心",
-				"navigationBarBackgroundColor": "#1e6ffc",
-				"backgroundColor": "#1e6ffc"
+				"navigationBarTitleText": "",
+				"app-plus": { //app配置自定义导航
+				"titleNView": false //app禁止使用原神导航
+				}
 			}
 		},
 		{
@@ -20,7 +21,8 @@
 			"style": {
 				"navigationBarTitleText": "扫码放心·药品追溯",
 				"navigationBarBackgroundColor": "#fff",
-				"backgroundColor": "#fff"
+				"backgroundColor": "#fff",
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -28,14 +30,24 @@
 			"style": {
 				"navigationBarTitleText": "药品验证",
 				"navigationBarBackgroundColor": "#fff",
-				"backgroundColor": "#fff"
+				"backgroundColor": "#fff",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/qrcode/index",
+			"style": {
+				"navigationBarTitleText": "扫码",
+				"navigationBarBackgroundColor": "#fff",
+				"backgroundColor": "#fff",
+				"navigationStyle": "custom"
 			}
 		}
 	],
 	"globalStyle": {
-		"navigationStyle": "custom",
+		// "navigationStyle": "custom",
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "扫码放心"
+		"navigationBarTitleText": ""
 		
 	},
 	"uniIdRouter": {}

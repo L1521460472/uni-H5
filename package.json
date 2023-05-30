@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@dcloudio/uni-ui": "^1.4.27",
+	"jsqr": "^1.4.0",
     "mand-mobile": "^2.6.1",
     "uni-ui": "^1.0.0"
   },

@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2076371",
+      "name": " 历史小2",
+      "font_class": "lishixiao",
+      "unicode": "e8bd",
+      "unicode_decimal": 59581
+    },
+    {
+      "icon_id": "17605453",
+      "name": "医生",
+      "font_class": "yisheng",
+      "unicode": "e813",
+      "unicode_decimal": 59411
+    },
+    {
+      "icon_id": "20592528",
+      "name": "送药上门",
+      "font_class": "songyaoshangmen",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "24272006",
+      "name": "信息管理",
+      "font_class": "xinxiguanli",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "32735331",
+      "name": "挂号就诊",
+      "font_class": "guahaojiuzhen",
+      "unicode": "e77c",
+      "unicode_decimal": 59260
+    },
+    {
       "icon_id": "2472460",
       "name": "下",
       "font_class": "xia",

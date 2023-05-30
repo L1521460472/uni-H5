@@ -21,6 +21,7 @@
 	
 	page{
 		background-color: #f9f9f9 !important;
+		position: relative;
 	}
 	/*每个页面公共css */
 	.content {

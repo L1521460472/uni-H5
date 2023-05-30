@@ -1,5 +1,5 @@
 {
-    "name" : "",
+    "name" : " ",
     "appid" : "__UNI__D84A4E7",
     "description" : "扫码放心",
     "versionName" : "1.0.0",
@@ -70,7 +70,7 @@
     },
     "vueVersion" : "2",
     "h5" : {
-        "title" : "",
+        "title" : " ",
         "router" : {
             "base" : "./",
             "mode" : "hash"

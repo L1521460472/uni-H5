@@ -2,7 +2,7 @@
 	<view class="content">
 		<view class="content-header">
 			<uni-icons type="scan" size="30" style="color: #fff;margin-right:10px"></uni-icons>
-			<text>扫码放心</text>
+			<text style="font-size: 22px; color: #fff;">扫码放心</text>
 		</view>
 		<view class="header">
 		    <view v-if='count == 1' class="header-box">
@@ -35,8 +35,8 @@
 		            <text style="font-size:22px;">{{drugInfo.productName}}</text>
 		          </view>
 		          <view class="drug-info-box">
-		            <view style="color:#948e97;margin-bottom: 10px;">药品规格：{{drugInfo.drugSpecifications}}</view>
-		            <view style="color:#948e97;display: flex;line-height: 22px;"> <view style="width: 120px;">生产厂家：</view> <view>{{drugInfo.manufacturer}}</view> </view>
+		            <view style="color:#948e97;margin-bottom: 10px;display: flex; justify-content: space-between;"><view style="width: 90px;">药品规格：</view><view style="flex: 1;">{{drugInfo.drugSpecifications}}</view></view>
+		            <view style="color:#948e97;display: flex; justify-content: space-between; line-height: 22px;"> <view style="width: 90px;">生产厂家：</view> <view style="flex: 1;">{{drugInfo.manufacturer}}</view> </view>
 		          </view>
 		        </view>
 		        <view class="drug-info-right">
@@ -278,28 +278,33 @@
 			    // });
 			  },
 			  qrcodeSucess(data) {
-			  	  uni.showModal({
-			  		  title: '成功',
-			  		  content: data,
-			  		  success: (data) => {
-			  			that.codes = (data.split('=')[1])
-						  getData(that.codes).then(res => {
-							that.count = res.data.scanNumber
-							that.drugInfo = JSON.parse(res.data.product)
-							that.imageUrl = 'https://cnwmm.org/prod-api' + that.drugInfo.productImagesUrl
-						  })
-			  			this.isShow = false
-			  		  }
-			  	  })
-			    },
+				var that = this;
+			  	that.codes = (data.split('=')[1])
+			  	if(that.codes.length == 20){
+			  		getData(that.codes).then(res => {
+			  			that.count = res.data.scanNumber
+			  			that.drugInfo = JSON.parse(res.data.product)
+			  			that.imageUrl = 'https://cnwmm.org/prod-api' + that.drugInfo.productImagesUrl
+			  		})
+					that.isShow = false
+				}else{
+					uni.showModal({
+						title: '成功',
+						content: data,
+						success: () => {
+						  that.isShow = false
+						}
+					})
+				}
+			  },
 			  qrcodeError(err) {
 			    console.log(err)
 			    uni.showModal({
-			  	title: '摄像头授权失败',
-			  	content: '摄像头授权失败，请检测当前浏览器是否有摄像头权限。',
-			  	success: () => {
-			  	  this.isShow = false
-			  	}
+					title: '摄像头授权失败',
+					content: '摄像头授权失败，请检测当前浏览器是否有摄像头权限。',
+					success: () => {
+					  this.isShow = false
+					}
 			    })
 			  }
 		}
@@ -455,7 +460,7 @@
 	  margin: auto;
 	  background-color: #fff;
 	  border-radius: 6px;
-	  padding: 24px;
+	  padding: 24px 16px;
 	  box-sizing: border-box;
 	}
 	
@@ -466,12 +471,12 @@
 	}
 	
 	.drug-info-left {
-	  width: 72%;
+	  width: 74%;
 	  height: 100%;
 	}
 	
 	.drug-info-right {
-	  width: 28%;
+	  width: 26%;
 	  height: 100%;
 	  display: flex;
 	  align-items: center;
@@ -546,7 +551,7 @@
 		}
 	
 		.text {
-			font-size: 14px;
+			font-size: 12px;
 			margin-top: 0px;
 		}
 		.text1 {

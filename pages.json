@@ -33,15 +33,6 @@
 				"backgroundColor": "#fff",
 				"navigationStyle": "custom"
 			}
-		},
-		{
-			"path": "pages/qrcode/index",
-			"style": {
-				"navigationBarTitleText": "扫码",
-				"navigationBarBackgroundColor": "#fff",
-				"backgroundColor": "#fff",
-				"navigationStyle": "custom"
-			}
 		}
 	],
 	"globalStyle": {

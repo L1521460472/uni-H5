@@ -1,8 +1,12 @@
 <template>
 	<view class="content">
 		<view class="content-header">
-			<uni-icons type="scan" size="30" style="color: #fff;margin-right:10px"></uni-icons>
-			<text style="font-size: 22px; color: #fff;">扫码放心</text>
+			<view style="display: flex;align-items: center;">
+				<!-- <uni-icons type="scan" size="26" style="color: #fff;margin-right:3px"></uni-icons> -->
+				<image style="width: 30px; height: 30px; margin-right: 0px;" src="../../image/logo01.png"></image>
+				<text style="font-size: 22px; color: #fff;line-height: 30px;">扫码放心</text>
+			</view>			
+			<image style="width: 100px; height: 26px;float: right;" src="../../image/bj04.jpg"></image>
 		</view>
 		<view class="header">
 		    <view v-if='count == 1' class="header-box">
@@ -94,6 +98,12 @@
 		  	<view class="content-box1">
 		  		<image style="width: 100%; height: 100%; background-color: #eeeeee;" src="../../bj03.jpg"></image>
 		  	</view>
+		  </view>
+		  
+		  <view class="content-text" style="margin-top: 20px;">
+			<view style="color: #d3d1d2;font-size: 12px;line-height: 20px;display: flex;align-items: center;">本功能由 阿阿健康，<image style="width: 22px; height: 22px; margin-right: 4px;" src="../../image/logo.png"></image> <text style="font-weight: bold;margin-right: 2px;">扫码放心</text> 追溯平台提供</view>
+			<view style="color: #d3d1d2;font-size: 12px;line-height: 20px;">"医生科普" 与 "患者问答"板块内容由第三方提供</view>
+			<view style="color: #d3d1d2;font-size: 12px;line-height: 20px;">如有问题可联系平台客服 010-95000011</view>
 		  </view>
 		
 		  <view style="font-size: 30px;position: fixed;bottom:30px;left: 0;right: 0;margin: auto;z-index: 999;border-radius: 30px;padding: 0;width: 60px;height: 60px;line-height: 60px;background-color: #1e6ffc;display: flex;align-items: center;justify-content: center;" @click="handleTap">
@@ -328,6 +338,7 @@
 		padding-top: 10px;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		font-size: 18px;
 		font-weight: bold;
 		background-color: #1e6ffc;
